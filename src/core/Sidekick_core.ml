@@ -125,7 +125,7 @@ end
 
 module type CC_S = sig
   module CC_A : CC_ARG
-  module A = CC_A.A
+  module A := CC_A.A
   type term_state = A.Term.state
   type term = A.Term.t
   type fun_ = A.Fun.t
@@ -314,8 +314,8 @@ module type SOLVER_INTERNAL = sig
   type t
   type solver = t
 
-  module Expl = CC.Expl
-  module N = CC.N
+  module Expl := CC.Expl
+  module N := CC.N
 
   val tst : t -> term_state
 
@@ -473,7 +473,7 @@ module type SOLVER = sig
   module Solver_internal : SOLVER_INTERNAL with module A = A and module CC_A = CC_A
   (** Internal solver, available to theories.  *)
 
-  module Lit = Solver_internal.Lit
+  module Lit := Solver_internal.Lit
 
   type t
   type solver = t

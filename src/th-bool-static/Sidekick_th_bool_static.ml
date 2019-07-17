@@ -34,8 +34,8 @@ end
 
 module type S = sig
   module A : ARG
-  module T = A.S.A.Term
-  module SI = A.S.Solver_internal
+  module T := A.S.A.Term
+  module SI := A.S.Solver_internal
 
   type state
 
@@ -54,8 +54,8 @@ module Make(A : ARG) : S with module A = A = struct
   module A = A
   module Ty = A.S.A.Ty
   module T = A.S.A.Term
-  module Lit = A.S.Lit
   module SI = A.S.Solver_internal
+  module Lit = SI.Lit
 
   type state = {
     tst: T.state;
